@@ -1,0 +1,50 @@
+{
+  "format_version": 1,
+  "exported_at": "2026-10-20T00:00:00Z",
+  "workflow": {
+    "name": "coveragelinebreakdown",
+    "description": "Returns the latest Codecov covered, partial, and uncovered line totals for the selected repositories, optionally filtered by flag.",
+    "input_script": "function toArray(value) {\n  if (Array.isArray(value)) return value;\n  if (value === undefined || value === null || value === '') return [];\n  return [value];\n}\n\nvar owners = toArray(input.owner);\nvar names = toArray(input.name);\nif (owners.length === 0 || names.length === 0) {\n  throw new Error('owner and name are required');\n}\nif (owners.length !== names.length) {\n  throw new Error('owner and name must contain the same number of values');\n}\n\nvar repoIds = [];\nvar seen = {};\nfor (var i = 0; i < owners.length; i++) {\n  var owner = String(owners[i] === undefined || owners[i] === null ? '' : owners[i]).trim();\n  var name = String(names[i] === undefined || names[i] === null ? '' : names[i]).trim();\n  if (!owner || !name) {\n    throw new Error('owner and name values must not be empty');\n  }\n  var repoId = owner.replace(/\\//g, ':') + '/' + name;\n  if (!seen[repoId]) {\n    seen[repoId] = true;\n    repoIds.push(repoId);\n  }\n}\n\nvar flag = input.flag === undefined || input.flag === null ? '' : String(input.flag).trim();\n({ repo_ids: repoIds, flag: flag })",
+    "output_script": "var rows = results.line_counts || [];\nvar seen = {};\nvar covered = 0;\nvar partial = 0;\nvar uncovered = 0;\n\nfor (var i = 0; i < rows.length; i++) {\n  var row = rows[i] || {};\n  var repoId = row.repo_id ? String(row.repo_id) : '';\n  if (!repoId || seen[repoId]) continue;\n  seen[repoId] = true;\n  covered += Number(row.hits) || 0;\n  partial += Number(row.partials) || 0;\n  uncovered += Number(row.misses) || 0;\n}\n\nif (covered === 0 && partial === 0 && uncovered === 0) {\n  ({ error: input.flag ? 'No line coverage data for ' + input.flag : 'No line coverage data found' });\n} else {\n  var total = covered + partial + uncovered;\n  ({\n    type: 'doughnut',\n    label: input.flag ? 'Line Coverage Breakdown — ' + input.flag : 'Line Coverage Breakdown',\n    description: '<b>Covered</b> — lines executed by tests.<br><b>Partial</b> — partly executed (for example, a branch was not taken).<br><b>Uncovered</b> — no test execution.<br>Total: ' + total + ' lines.<br><br>Percentages are weighted by line count, so larger repositories contribute more.',\n    data: {\n      labels: ['Covered', 'Partial', 'Uncovered'],\n      datasets: [{\n        data: [covered, partial, uncovered],\n        backgroundColor: ['#3E8635', '#F0AB00', '#A30000'],\n        borderColor: ['#1E4F18', '#B08000', '#7D1007']\n      }]\n    }\n  });\n}",
+    "test_input": "{\"owner\":[\"metadata/snitch\"],\"name\":[\"snitch\"]}",
+    "tests": [
+      {
+        "name": "Nested GitLab repository returns aggregate line counts",
+        "input": "{\"owner\":[\"metadata/snitch\"],\"name\":[\"snitch\"]}",
+        "assert_script": "if (!output || output.type !== 'doughnut') throw new Error('expected doughnut response');\nif (!output.data || !output.data.datasets || output.data.datasets.length !== 1) throw new Error('missing dataset');\nvar values = output.data.datasets[0].data;\nif (!values || values.length !== 3) throw new Error('expected three line totals');\nif (Number(values[0]) + Number(values[1]) + Number(values[2]) <= 0) throw new Error('expected non-zero line total');",
+        "schema_id": 1
+      },
+      {
+        "name": "Codecov flag returns flag-specific line counts",
+        "input": "{\"owner\":[\"metadata/snitch\"],\"name\":[\"snitch\"],\"flag\":\"unit-tests\"}",
+        "assert_script": "if (!output || output.type !== 'doughnut') throw new Error('expected doughnut response');\nif (output.label.indexOf('unit-tests') === -1) throw new Error('flag missing from label');\nvar values = output.data.datasets[0].data;\nif (Number(values[0]) + Number(values[1]) + Number(values[2]) <= 0) throw new Error('expected non-zero flag line total');",
+        "schema_id": 1
+      },
+      {
+        "name": "Unknown repository returns a no-data response",
+        "input": "{\"owner\":[\"__lfm_missing__\"],\"name\":[\"__lfm_missing__\"]}",
+        "assert_script": "if (!output || output.error !== 'No line coverage data found') throw new Error('expected no-data response');"
+      }
+    ],
+    "version": 0,
+    "queries": [
+      {
+        "stage": 0,
+        "sort_order": 0,
+        "label": "line_counts",
+        "sql_text": "WITH aggregate_rows AS (\n  SELECT\n    cc.repo_id,\n    cc.hits,\n    cc.misses,\n    cc.partials,\n    ROW_NUMBER() OVER (\n      PARTITION BY cc.repo_id\n      ORDER BY cc.commit_timestamp DESC, cc.commit_sha DESC\n    ) AS row_num\n  FROM _tool_codecov_commit_coverages cc\n  INNER JOIN _tool_codecov_commits cm\n    ON cc.repo_id = cm.repo_id AND cc.commit_sha = cm.commit_sha\n  WHERE :flag = ''\n    AND cc.repo_id IN (:repo_ids)\n    AND (COALESCE(cc.hits, 0) + COALESCE(cc.misses, 0) + COALESCE(cc.partials, 0)) > 0\n    AND cm.author NOT LIKE 'red-hat-konflux%'\n    AND cm.author NOT LIKE 'dependabot%'\n    AND cm.author NOT LIKE 'renovate%'\n    AND cm.author NOT LIKE 'snyk-io%'\n),\nflag_rows AS (\n  SELECT\n    cov.repo_id,\n    cov.hits,\n    cov.misses,\n    cov.partials,\n    ROW_NUMBER() OVER (\n      PARTITION BY cov.repo_id\n      ORDER BY cov.commit_timestamp DESC, cov.commit_sha DESC\n    ) AS row_num\n  FROM _tool_codecov_coverages cov\n  INNER JOIN _tool_codecov_commits cm\n    ON cov.repo_id = cm.repo_id AND cov.commit_sha = cm.commit_sha\n  WHERE :flag <> ''\n    AND cov.repo_id IN (:repo_ids)\n    AND cov.flag_name = :flag\n    AND (COALESCE(cov.hits, 0) + COALESCE(cov.misses, 0) + COALESCE(cov.partials, 0)) > 0\n    AND cm.author NOT LIKE 'red-hat-konflux%'\n    AND cm.author NOT LIKE 'dependabot%'\n    AND cm.author NOT LIKE 'renovate%'\n    AND cm.author NOT LIKE 'snyk-io%'\n)\nSELECT repo_id, hits, misses, partials\nFROM aggregate_rows\nWHERE row_num = 1\nUNION ALL\nSELECT repo_id, hits, misses, partials\nFROM flag_rows\nWHERE row_num = 1\nORDER BY repo_id"
+      }
+    ]
+  },
+  "stored_procedures": [],
+  "json_schemas": [
+    {
+      "id": 1,
+      "name": "coverage-line-breakdown-output",
+      "description": "Successful Code Coverage line breakdown response.",
+      "json_schema": "{\"type\":\"object\",\"required\":[\"type\",\"label\",\"description\",\"data\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"doughnut\"]},\"label\":{\"type\":\"string\",\"minLength\":1},\"description\":{\"type\":\"string\",\"minLength\":1},\"data\":{\"type\":\"object\",\"required\":[\"labels\",\"datasets\"],\"properties\":{\"labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"datasets\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"required\":[\"data\",\"backgroundColor\",\"borderColor\"],\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"number\",\"minimum\":0}},\"backgroundColor\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"borderColor\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}}}",
+      "version": 1
+    }
+  ],
+  "versions": []
+}

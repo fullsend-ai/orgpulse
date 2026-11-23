@@ -1,0 +1,93 @@
+[
+  {
+    "dashboard_id": "prcycletime",
+    "type": "prcycletime",
+    "title": "PR Cycle Time",
+    "description": "Key performance indicators and metrics of your team's pull requests.",
+    "icon": "CodeBranchIcon",
+    "category": "",
+    "chat_url": "",
+    "ai_analytics_url": "",
+    "diagrams": [
+      {"position": 0, "type": "json", "endpoint": "/workflows/production/prkeymetrics", "ai_analytics": true, "description": "Throughput, median cycle time, opened PRs, and outlier count for the selected time range.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#pr-cycle-time"},
+      {"position": 1, "type": "json", "endpoint": "/workflows/production/prstages", "span": 1, "ai_analytics": true, "description": "Percentage of average cycle time spent in pickup, review, and integration stages.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#pr-cycle-time"},
+      {"position": 2, "type": "json", "endpoint": "/workflows/production/prproductivity", "ai_analytics": true, "description": "Ratio of merged PRs to total closed PRs, measuring work that reaches production.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#pr-cycle-time"},
+      {"position": 3, "type": "json", "endpoint": "/workflows/production/prflow", "ai_analytics": true, "description": "How PRs move through their lifecycle from creation to merge or close.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#pr-cycle-time"},
+      {"position": 4, "type": "json", "endpoint": "/workflows/production/przscore", "ai_analytics": true, "description": "Z-score of PR cycle time over a 90-day baseline. Green is fast, gray is average, red is slow.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#pr-cycle-time"},
+      {"position": 5, "type": "json", "endpoint": "/workflows/production/prcycletimescatter", "ai_analytics": true, "description": "Distribution of PR cycle times across time buckets for merged and abandoned PRs.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#pr-cycle-time"}
+    ]
+  },
+  {
+    "dashboard_id": "ftpr",
+    "type": "ftpr",
+    "title": "First Time Pass Rate",
+    "description": "Measures how often merged PRs pass all CI checks on their first commit.",
+    "icon": "CheckCircleIcon",
+    "category": "",
+    "diagrams": [
+      {"position": 0, "type": "json", "endpoint": "/workflows/production/ftprkeymetrics", "ai_analytics": true, "description": "First time pass rate key metrics for the selected time range.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#first-time-pass-rate"},
+      {"position": 1, "type": "json", "endpoint": "/workflows/production/ftprovertime", "ai_analytics": true, "description": "First time pass rate percentage over time.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#first-time-pass-rate"},
+      {"position": 2, "type": "json", "endpoint": "/workflows/production/ftprpassfail", "ai_analytics": true, "description": "Breakdown of PRs that passed or failed CI on first commit.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#first-time-pass-rate"}
+    ]
+  },
+  {
+    "dashboard_id": "issuecycletime",
+    "type": "issuecycletime",
+    "title": "Issue Cycle Time",
+    "description": "Key performance indicators and metrics of your team's issues, stories, and epics.",
+    "icon": "TaskIcon",
+    "category": "",
+    "diagrams": [
+      {"position": 0, "type": "json", "endpoint": "/workflows/production/issuekeymetrics", "ai_analytics": true, "description": "Throughput, median cycle time, and key counts for issues closed in the selected time range.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#issue-cycle-time"},
+      {"position": 1, "type": "json", "endpoint": "/workflows/production/issuemediancycletime", "span": 2, "ai_analytics": true, "description": "Median issue cycle time over the selected period, with trend.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#issue-cycle-time"},
+      {"position": 2, "type": "json", "endpoint": "/workflows/production/issuezscore", "ai_analytics": true, "description": "Z-score of issue cycle time, highlighting fast, average, and slow issues.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#issue-cycle-time"},
+      {"position": 3, "type": "json", "endpoint": "/workflows/production/issuestages", "ai_analytics": true, "description": "Time spent in each issue lifecycle stage.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#issue-cycle-time"},
+      {"position": 4, "type": "json", "endpoint": "/workflows/production/issuetypebreakdown", "ai_analytics": true, "description": "Breakdown of closed issues by type (bug, story, task, etc.).", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#issue-cycle-time"},
+      {"position": 5, "type": "json", "endpoint": "/workflows/production/issuethroughput", "span": 2, "ai_analytics": true, "description": "Number of issues closed over time.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#issue-cycle-time"}
+    ]
+  },
+  {
+    "dashboard_id": "codecoverage",
+    "type": "codecoverage",
+    "title": "Code Coverage",
+    "description": "Code coverage metrics powered by Codecov. Shows overall coverage, patch coverage, and line-level breakdown.",
+    "icon": "ShieldAltIcon",
+    "category": "",
+    "diagrams": [
+      {"position": 0, "type": "json", "endpoint": "/workflows/production/coveragekeymetrics", "ai_analytics": true, "description": "Overall and patch coverage percentages for the selected time range.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#code-coverage"},
+      {"position": 1, "type": "json", "endpoint": "/workflows/production/coveragetrend", "ai_analytics": true, "description": "Coverage trend over time.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#code-coverage"},
+      {"position": 2, "type": "json", "endpoint": "/workflows/production/coveragelinebreakdown", "ai_analytics": true, "description": "Line-level coverage breakdown by repository.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#code-coverage"}
+    ]
+  },
+  {
+    "dashboard_id": "aicommitscanner",
+    "type": "aicommitscanner",
+    "title": "AI Commit Scanner",
+    "description": "Insights into AI usage patterns in commits.",
+    "icon": "BrainIcon",
+    "category": "",
+    "diagrams": [
+      {"position": 0, "type": "json", "endpoint": "/workflows/production/cskeymetrics", "ai_analytics": true, "description": "Key AI usage stats: AI-assisted commit count, percentage, and tool breakdown.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#ai-commit-scanner"},
+      {"position": 1, "type": "json", "endpoint": "/workflows/production/csaitools", "ai_analytics": true, "description": "Breakdown of AI tools detected in commits.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#ai-commit-scanner"},
+      {"position": 2, "type": "json", "endpoint": "/workflows/production/csdevelopers", "ai_analytics": true, "description": "Developers with the highest AI-assisted commit counts.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#ai-commit-scanner"},
+      {"position": 3, "type": "json", "endpoint": "/workflows/production/cstrend", "span": 2, "ai_analytics": true, "description": "AI-assisted commit trend over time.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#ai-commit-scanner"},
+      {"position": 4, "type": "json", "endpoint": "/workflows/production/cstooltrend", "span": 2, "ai_analytics": true, "description": "Trend of AI tool usage over time.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#ai-commit-scanner"}
+    ]
+  },
+  {
+    "dashboard_id": "aisdlc",
+    "type": "aisdlc",
+    "title": "AISDLC",
+    "description": "Readiness of RFEs assessed by the AISDLC RFE station and their conversion into strategies. Requires the team config entries rfe_jira_project, strat_jira_project, rfe_station_id and strategy_station_id.",
+    "icon": "ChartBarIcon",
+    "category": "",
+    "diagrams": [
+      {"position": 0, "type": "json", "endpoint": "/workflows/production/aisdlcrfereadiness", "span": 2, "ai_analytics": true, "description": "RFE readiness stats across assessment criteria.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#aisdlc", "params": {"view": "stats"}},
+      {"position": 1, "type": "json", "endpoint": "/workflows/production/aisdlcrfereadiness", "ai_analytics": true, "description": "Blocking criteria preventing RFEs from reaching readiness.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#aisdlc", "params": {"view": "criteria"}},
+      {"position": 2, "type": "json", "endpoint": "/workflows/production/aisdlcrfereadiness", "ai_analytics": true, "description": "RFE readiness trend over time.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#aisdlc", "params": {"view": "trend"}},
+      {"position": 3, "type": "json", "endpoint": "/workflows/production/aisdlcstrategyconversion", "span": 2, "ai_analytics": true, "description": "RFE to strategy conversion stats.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#aisdlc", "params": {"view": "stats"}},
+      {"position": 4, "type": "json", "endpoint": "/workflows/production/aisdlcstrategyconversion", "ai_analytics": true, "description": "Flow of RFEs through strategy conversion stages.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#aisdlc", "params": {"view": "flow"}},
+      {"position": 5, "type": "json", "endpoint": "/workflows/production/aisdlcstrategyconversion", "ai_analytics": true, "description": "Source RFE and strategy pairs.", "documentation_url": "https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#aisdlc", "params": {"view": "pairs"}}
+    ]
+  }
+]

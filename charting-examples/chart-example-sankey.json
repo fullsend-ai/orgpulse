@@ -1,0 +1,1092 @@
+  {
+    "type": "sankey",
+    "label": "PR Stage Flow <a href=\"https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#pr-cycle-time\" target=\"_blank\" style=\"text-decoration: none; margin-left: 4px;\"><img src=\"help-icon.svg\" alt=\"Help\" style=\"vertical-align: middle; width: 16px; height: 16px;\" /></a>",
+    "description": "This visualization shows how PRs move through their lifecycle from creation to final state (merged or closed without merge). Only PRs that reached a final state during the selected time period are included. It provides a quick, visual overview of where, and with what frequency, state transfers are occurring.",
+    "lastupdate": 1783473495688,
+    "data": {
+      "extra": {
+        "config": [
+          {
+            "location": "inDiagram",
+            "type": "openList",
+            "elements": {
+              "opened->reviewed": {
+                "field": "opened_to_reviewed",
+                "template": "Opened → Reviewed PRs"
+              },
+              "opened->abandoned": {
+                "field": "opened_to_abandoned",
+                "template": "Opened → Abandoned PRs"
+              },
+              "reviewed->approved": {
+                "field": "reviewed_to_approved",
+                "template": "Reviewed → Approved PRs"
+              },
+              "reviewed->abandoned": {
+                "field": "reviewed_to_abandoned",
+                "template": "Reviewed → Abandoned PRs"
+              },
+              "approved->merged": {
+                "field": "approved_to_merged",
+                "template": "Approved → Merged PRs"
+              },
+              "approved->abandoned": {
+                "field": "approved_to_abandoned",
+                "template": "Approved → Abandoned PRs"
+              }
+            }
+          }
+        ],
+        "data": {
+          "opened_to_reviewed": [
+            {
+              "id": 3403,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3403"
+            },
+            {
+              "id": 3526,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3526"
+            },
+            {
+              "id": 3555,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3555"
+            },
+            {
+              "id": 3560,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3560"
+            },
+            {
+              "id": 3562,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3562"
+            },
+            {
+              "id": 3563,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3563"
+            },
+            {
+              "id": 3567,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3567"
+            },
+            {
+              "id": 3570,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3570"
+            },
+            {
+              "id": 3571,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3571"
+            },
+            {
+              "id": 3573,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3573"
+            },
+            {
+              "id": 3574,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3574"
+            },
+            {
+              "id": 3575,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3575"
+            },
+            {
+              "id": 3576,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3576"
+            },
+            {
+              "id": 3577,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3577"
+            },
+            {
+              "id": 3583,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3583"
+            },
+            {
+              "id": 3585,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3585"
+            },
+            {
+              "id": 3586,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3586"
+            },
+            {
+              "id": 3587,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3587"
+            },
+            {
+              "id": 3588,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3588"
+            },
+            {
+              "id": 3589,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3589"
+            },
+            {
+              "id": 3592,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3592"
+            },
+            {
+              "id": 3595,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3595"
+            },
+            {
+              "id": 3596,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3596"
+            },
+            {
+              "id": 3598,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3598"
+            },
+            {
+              "id": 3599,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3599"
+            },
+            {
+              "id": 3600,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3600"
+            },
+            {
+              "id": 3609,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3609"
+            },
+            {
+              "id": 3610,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3610"
+            },
+            {
+              "id": 3612,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3612"
+            },
+            {
+              "id": 3613,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3613"
+            },
+            {
+              "id": 3622,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3622"
+            },
+            {
+              "id": 3630,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3630"
+            },
+            {
+              "id": 3631,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3631"
+            },
+            {
+              "id": 3633,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3633"
+            },
+            {
+              "id": 3639,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3639"
+            },
+            {
+              "id": 3640,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3640"
+            },
+            {
+              "id": 3641,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3641"
+            },
+            {
+              "id": 3643,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3643"
+            },
+            {
+              "id": 3648,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3648"
+            },
+            {
+              "id": 3649,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3649"
+            },
+            {
+              "id": 3650,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3650"
+            },
+            {
+              "id": 3651,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3651"
+            },
+            {
+              "id": 3652,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3652"
+            },
+            {
+              "id": 3654,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3654"
+            },
+            {
+              "id": 3656,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3656"
+            },
+            {
+              "id": 3658,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3658"
+            },
+            {
+              "id": 3661,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3661"
+            },
+            {
+              "id": 577,
+              "url": "https://github.com/konflux-ci/build-service/pull/577"
+            },
+            {
+              "id": 630,
+              "url": "https://github.com/konflux-ci/build-service/pull/630"
+            },
+            {
+              "id": 633,
+              "url": "https://github.com/konflux-ci/build-service/pull/633"
+            },
+            {
+              "id": 636,
+              "url": "https://github.com/konflux-ci/build-service/pull/636"
+            },
+            {
+              "id": 637,
+              "url": "https://github.com/konflux-ci/build-service/pull/637"
+            },
+            {
+              "id": 646,
+              "url": "https://github.com/konflux-ci/build-service/pull/646"
+            },
+            {
+              "id": 647,
+              "url": "https://github.com/konflux-ci/build-service/pull/647"
+            },
+            {
+              "id": 326,
+              "url": "https://github.com/konflux-ci/image-controller/pull/326"
+            },
+            {
+              "id": 327,
+              "url": "https://github.com/konflux-ci/image-controller/pull/327"
+            },
+            {
+              "id": 328,
+              "url": "https://github.com/konflux-ci/image-controller/pull/328"
+            },
+            {
+              "id": 329,
+              "url": "https://github.com/konflux-ci/image-controller/pull/329"
+            },
+            {
+              "id": 330,
+              "url": "https://github.com/konflux-ci/image-controller/pull/330"
+            },
+            {
+              "id": 331,
+              "url": "https://github.com/konflux-ci/image-controller/pull/331"
+            },
+            {
+              "id": 332,
+              "url": "https://github.com/konflux-ci/image-controller/pull/332"
+            },
+            {
+              "id": 333,
+              "url": "https://github.com/konflux-ci/image-controller/pull/333"
+            },
+            {
+              "id": 337,
+              "url": "https://github.com/konflux-ci/image-controller/pull/337"
+            },
+            {
+              "id": 338,
+              "url": "https://github.com/konflux-ci/image-controller/pull/338"
+            },
+            {
+              "id": 339,
+              "url": "https://github.com/konflux-ci/image-controller/pull/339"
+            },
+            {
+              "id": 16,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/16"
+            },
+            {
+              "id": 17,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/17"
+            },
+            {
+              "id": 18,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/18"
+            },
+            {
+              "id": 122,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/122"
+            },
+            {
+              "id": 123,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/123"
+            },
+            {
+              "id": 124,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/124"
+            },
+            {
+              "id": 127,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/127"
+            },
+            {
+              "id": 128,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/128"
+            },
+            {
+              "id": 129,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/129"
+            },
+            {
+              "id": 130,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/130"
+            },
+            {
+              "id": 132,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/132"
+            },
+            {
+              "id": 133,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/133"
+            }
+          ],
+          "opened_to_abandoned": [
+            {
+              "id": 3392,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3392"
+            },
+            {
+              "id": 3541,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3541"
+            },
+            {
+              "id": 3647,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3647"
+            },
+            {
+              "id": 3659,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3659"
+            },
+            {
+              "id": 610,
+              "url": "https://github.com/konflux-ci/build-service/pull/610"
+            },
+            {
+              "id": 611,
+              "url": "https://github.com/konflux-ci/build-service/pull/611"
+            },
+            {
+              "id": 612,
+              "url": "https://github.com/konflux-ci/build-service/pull/612"
+            },
+            {
+              "id": 15,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/15"
+            }
+          ],
+          "reviewed_to_approved": [
+            {
+              "id": 3526,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3526"
+            },
+            {
+              "id": 3555,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3555"
+            },
+            {
+              "id": 3562,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3562"
+            },
+            {
+              "id": 3563,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3563"
+            },
+            {
+              "id": 3567,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3567"
+            },
+            {
+              "id": 3571,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3571"
+            },
+            {
+              "id": 3573,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3573"
+            },
+            {
+              "id": 3574,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3574"
+            },
+            {
+              "id": 3575,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3575"
+            },
+            {
+              "id": 3576,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3576"
+            },
+            {
+              "id": 3577,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3577"
+            },
+            {
+              "id": 3583,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3583"
+            },
+            {
+              "id": 3585,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3585"
+            },
+            {
+              "id": 3586,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3586"
+            },
+            {
+              "id": 3587,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3587"
+            },
+            {
+              "id": 3588,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3588"
+            },
+            {
+              "id": 3589,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3589"
+            },
+            {
+              "id": 3592,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3592"
+            },
+            {
+              "id": 3595,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3595"
+            },
+            {
+              "id": 3596,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3596"
+            },
+            {
+              "id": 3598,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3598"
+            },
+            {
+              "id": 3599,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3599"
+            },
+            {
+              "id": 3600,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3600"
+            },
+            {
+              "id": 3609,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3609"
+            },
+            {
+              "id": 3610,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3610"
+            },
+            {
+              "id": 3612,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3612"
+            },
+            {
+              "id": 3613,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3613"
+            },
+            {
+              "id": 3622,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3622"
+            },
+            {
+              "id": 3630,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3630"
+            },
+            {
+              "id": 3631,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3631"
+            },
+            {
+              "id": 3633,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3633"
+            },
+            {
+              "id": 3639,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3639"
+            },
+            {
+              "id": 3640,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3640"
+            },
+            {
+              "id": 3643,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3643"
+            },
+            {
+              "id": 3648,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3648"
+            },
+            {
+              "id": 3649,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3649"
+            },
+            {
+              "id": 3650,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3650"
+            },
+            {
+              "id": 3651,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3651"
+            },
+            {
+              "id": 3652,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3652"
+            },
+            {
+              "id": 3654,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3654"
+            },
+            {
+              "id": 3656,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3656"
+            },
+            {
+              "id": 3658,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3658"
+            },
+            {
+              "id": 3661,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3661"
+            },
+            {
+              "id": 577,
+              "url": "https://github.com/konflux-ci/build-service/pull/577"
+            },
+            {
+              "id": 630,
+              "url": "https://github.com/konflux-ci/build-service/pull/630"
+            },
+            {
+              "id": 633,
+              "url": "https://github.com/konflux-ci/build-service/pull/633"
+            },
+            {
+              "id": 636,
+              "url": "https://github.com/konflux-ci/build-service/pull/636"
+            },
+            {
+              "id": 637,
+              "url": "https://github.com/konflux-ci/build-service/pull/637"
+            },
+            {
+              "id": 646,
+              "url": "https://github.com/konflux-ci/build-service/pull/646"
+            },
+            {
+              "id": 647,
+              "url": "https://github.com/konflux-ci/build-service/pull/647"
+            },
+            {
+              "id": 326,
+              "url": "https://github.com/konflux-ci/image-controller/pull/326"
+            },
+            {
+              "id": 327,
+              "url": "https://github.com/konflux-ci/image-controller/pull/327"
+            },
+            {
+              "id": 328,
+              "url": "https://github.com/konflux-ci/image-controller/pull/328"
+            },
+            {
+              "id": 329,
+              "url": "https://github.com/konflux-ci/image-controller/pull/329"
+            },
+            {
+              "id": 330,
+              "url": "https://github.com/konflux-ci/image-controller/pull/330"
+            },
+            {
+              "id": 331,
+              "url": "https://github.com/konflux-ci/image-controller/pull/331"
+            },
+            {
+              "id": 332,
+              "url": "https://github.com/konflux-ci/image-controller/pull/332"
+            },
+            {
+              "id": 333,
+              "url": "https://github.com/konflux-ci/image-controller/pull/333"
+            },
+            {
+              "id": 337,
+              "url": "https://github.com/konflux-ci/image-controller/pull/337"
+            },
+            {
+              "id": 338,
+              "url": "https://github.com/konflux-ci/image-controller/pull/338"
+            },
+            {
+              "id": 339,
+              "url": "https://github.com/konflux-ci/image-controller/pull/339"
+            },
+            {
+              "id": 16,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/16"
+            },
+            {
+              "id": 17,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/17"
+            },
+            {
+              "id": 18,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/18"
+            },
+            {
+              "id": 122,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/122"
+            },
+            {
+              "id": 123,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/123"
+            },
+            {
+              "id": 124,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/124"
+            },
+            {
+              "id": 127,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/127"
+            },
+            {
+              "id": 128,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/128"
+            },
+            {
+              "id": 129,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/129"
+            },
+            {
+              "id": 130,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/130"
+            },
+            {
+              "id": 132,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/132"
+            },
+            {
+              "id": 133,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/133"
+            }
+          ],
+          "reviewed_to_abandoned": [
+            {
+              "id": 3403,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3403"
+            },
+            {
+              "id": 3560,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3560"
+            },
+            {
+              "id": 3570,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3570"
+            },
+            {
+              "id": 3641,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3641"
+            }
+          ],
+          "approved_to_merged": [
+            {
+              "id": 3526,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3526"
+            },
+            {
+              "id": 3555,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3555"
+            },
+            {
+              "id": 3562,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3562"
+            },
+            {
+              "id": 3563,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3563"
+            },
+            {
+              "id": 3567,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3567"
+            },
+            {
+              "id": 3571,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3571"
+            },
+            {
+              "id": 3573,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3573"
+            },
+            {
+              "id": 3574,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3574"
+            },
+            {
+              "id": 3575,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3575"
+            },
+            {
+              "id": 3576,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3576"
+            },
+            {
+              "id": 3583,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3583"
+            },
+            {
+              "id": 3585,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3585"
+            },
+            {
+              "id": 3586,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3586"
+            },
+            {
+              "id": 3588,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3588"
+            },
+            {
+              "id": 3589,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3589"
+            },
+            {
+              "id": 3592,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3592"
+            },
+            {
+              "id": 3595,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3595"
+            },
+            {
+              "id": 3596,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3596"
+            },
+            {
+              "id": 3598,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3598"
+            },
+            {
+              "id": 3599,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3599"
+            },
+            {
+              "id": 3600,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3600"
+            },
+            {
+              "id": 3609,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3609"
+            },
+            {
+              "id": 3612,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3612"
+            },
+            {
+              "id": 3613,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3613"
+            },
+            {
+              "id": 3622,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3622"
+            },
+            {
+              "id": 3630,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3630"
+            },
+            {
+              "id": 3631,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3631"
+            },
+            {
+              "id": 3639,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3639"
+            },
+            {
+              "id": 3640,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3640"
+            },
+            {
+              "id": 3643,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3643"
+            },
+            {
+              "id": 3648,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3648"
+            },
+            {
+              "id": 3649,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3649"
+            },
+            {
+              "id": 3650,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3650"
+            },
+            {
+              "id": 3651,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3651"
+            },
+            {
+              "id": 3652,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3652"
+            },
+            {
+              "id": 3654,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3654"
+            },
+            {
+              "id": 3656,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3656"
+            },
+            {
+              "id": 3658,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3658"
+            },
+            {
+              "id": 3661,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3661"
+            },
+            {
+              "id": 630,
+              "url": "https://github.com/konflux-ci/build-service/pull/630"
+            },
+            {
+              "id": 633,
+              "url": "https://github.com/konflux-ci/build-service/pull/633"
+            },
+            {
+              "id": 636,
+              "url": "https://github.com/konflux-ci/build-service/pull/636"
+            },
+            {
+              "id": 637,
+              "url": "https://github.com/konflux-ci/build-service/pull/637"
+            },
+            {
+              "id": 646,
+              "url": "https://github.com/konflux-ci/build-service/pull/646"
+            },
+            {
+              "id": 647,
+              "url": "https://github.com/konflux-ci/build-service/pull/647"
+            },
+            {
+              "id": 326,
+              "url": "https://github.com/konflux-ci/image-controller/pull/326"
+            },
+            {
+              "id": 327,
+              "url": "https://github.com/konflux-ci/image-controller/pull/327"
+            },
+            {
+              "id": 328,
+              "url": "https://github.com/konflux-ci/image-controller/pull/328"
+            },
+            {
+              "id": 329,
+              "url": "https://github.com/konflux-ci/image-controller/pull/329"
+            },
+            {
+              "id": 330,
+              "url": "https://github.com/konflux-ci/image-controller/pull/330"
+            },
+            {
+              "id": 331,
+              "url": "https://github.com/konflux-ci/image-controller/pull/331"
+            },
+            {
+              "id": 332,
+              "url": "https://github.com/konflux-ci/image-controller/pull/332"
+            },
+            {
+              "id": 333,
+              "url": "https://github.com/konflux-ci/image-controller/pull/333"
+            },
+            {
+              "id": 337,
+              "url": "https://github.com/konflux-ci/image-controller/pull/337"
+            },
+            {
+              "id": 338,
+              "url": "https://github.com/konflux-ci/image-controller/pull/338"
+            },
+            {
+              "id": 339,
+              "url": "https://github.com/konflux-ci/image-controller/pull/339"
+            },
+            {
+              "id": 16,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/16"
+            },
+            {
+              "id": 17,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/17"
+            },
+            {
+              "id": 18,
+              "url": "https://github.com/konflux-ci/dockerfile-json/pull/18"
+            },
+            {
+              "id": 122,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/122"
+            },
+            {
+              "id": 123,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/123"
+            },
+            {
+              "id": 124,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/124"
+            },
+            {
+              "id": 127,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/127"
+            },
+            {
+              "id": 128,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/128"
+            },
+            {
+              "id": 129,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/129"
+            },
+            {
+              "id": 130,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/130"
+            },
+            {
+              "id": 132,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/132"
+            },
+            {
+              "id": 133,
+              "url": "https://github.com/konflux-ci/pipeline-migration-tool/pull/133"
+            }
+          ],
+          "approved_to_abandoned": [
+            {
+              "id": 3577,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3577"
+            },
+            {
+              "id": 3587,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3587"
+            },
+            {
+              "id": 3610,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3610"
+            },
+            {
+              "id": 3633,
+              "url": "https://github.com/konflux-ci/build-definitions/pull/3633"
+            },
+            {
+              "id": 577,
+              "url": "https://github.com/konflux-ci/build-service/pull/577"
+            }
+          ]
+        }
+      },
+      "medianReviewInterval": 0.12416666666666666,
+      "transfers": {
+        "OPENED->REVIEWED": 77,
+        "OPENED->APPROVED": 0,
+        "OPENED->MERGED": 0,
+        "OPENED->ABANDONED": 8,
+        "REVIEWED->APPROVED": 73,
+        "REVIEWED->MERGED": 0,
+        "REVIEWED->ABANDONED": 4,
+        "APPROVED->MERGED": 68,
+        "APPROVED->ABANDONED": 5
+      },
+      "percentages": {
+        "OPENED->REVIEWED": 90.58823529411765,
+        "OPENED->APPROVED": 0,
+        "OPENED->MERGED": 0,
+        "OPENED->ABANDONED": 9.411764705882353,
+        "REVIEWED->APPROVED": 85.88235294117646,
+        "REVIEWED->MERGED": 0,
+        "REVIEWED->ABANDONED": 4.705882352941177,
+        "APPROVED->MERGED": 80,
+        "APPROVED->ABANDONED": 5.88235294117647
+      },
+      "datasets": [
+        {
+          "label": "PR Lifecycle Flow",
+          "data": [
+            {
+              "from": "opened",
+              "to": "reviewed",
+              "flow": 90.6,
+              "count": 77
+            },
+            {
+              "from": "opened",
+              "to": "abandoned",
+              "flow": 9.4,
+              "count": 8
+            },
+            {
+              "from": "reviewed",
+              "to": "approved",
+              "flow": 85.9,
+              "count": 73
+            },
+            {
+              "from": "reviewed",
+              "to": "abandoned",
+              "flow": 4.7,
+              "count": 4
+            },
+            {
+              "from": "approved",
+              "to": "merged",
+              "flow": 80,
+              "count": 68
+            },
+            {
+              "from": "approved",
+              "to": "abandoned",
+              "flow": 5.9,
+              "count": 5
+            }
+          ],
+          "color": {
+            "opened": "#0066CC",
+            "reviewed": "#6753AC",
+            "approved": "#4AB740",
+            "merged": "#3E8635",
+            "abandoned": "#A30000"
+          },
+          "colorMode": "gradient",
+          "labels": {
+            "opened": "Opened",
+            "reviewed": "Reviewed",
+            "approved": "Approved",
+            "merged": "Merged",
+            "abandoned": "Abandoned"
+          },
+          "priority": {
+            "opened": 0,
+            "reviewed": 1,
+            "approved": 2,
+            "merged": 3,
+            "abandoned": 4
+          },
+          "column": {
+            "opened": 0,
+            "reviewed": 1,
+            "approved": 2,
+            "merged": 3,
+            "abandoned": 3
+          },
+          "size": "max"
+        }
+      ]
+    }
+  }

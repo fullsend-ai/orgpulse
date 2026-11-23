@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "knots.schema.json",
+  "title": "Knots Visualization",
+  "description": "Cycle time breakdown shown as connected stage cards.",
+  "type": "object",
+  "required": ["type", "label", "description", "lastupdate", "data"],
+  "properties": {
+    "type": { "const": "knots" },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "lastupdate": { "type": "number" },
+    "helpUrl": { "type": "string", "format": "uri" },
+    "data": {
+      "type": "object",
+      "required": ["stages"],
+      "properties": {
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "value"],
+            "properties": {
+              "label": { "type": "string", "description": "Stage name." },
+              "value": { "type": "number", "description": "Duration value." },
+              "icon": { "type": "string", "description": "Emoji or icon identifier." }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stagedoughnut.schema.json",
+  "title": "Stage Doughnut Visualization",
+  "description": "Stage-based doughnut for status breakdown (e.g. Jira issue stages).",
+  "type": "object",
+  "required": ["type", "label", "description", "lastupdate", "data"],
+  "properties": {
+    "type": { "const": "stagedoughnut" },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "lastupdate": { "type": "number" },
+    "helpUrl": { "type": "string", "format": "uri" },
+    "data": {
+      "type": "object",
+      "required": ["stages", "resolvedCount"],
+      "properties": {
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "category", "value"],
+            "properties": {
+              "label": { "type": "string", "description": "Status name." },
+              "category": {
+                "type": "string",
+                "enum": ["TODO", "IN_PROGRESS", "DONE"],
+                "description": "Status category."
+              },
+              "value": { "type": "number", "description": "Median hours in this stage." }
+            },
+            "additionalProperties": false
+          }
+        },
+        "resolvedCount": { "type": "integer", "description": "Total resolved issues." }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

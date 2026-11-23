@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "orgs.schema.json",
+  "title": "Orgs Configuration",
+  "description": "Array of organization definitions. Each org groups products and optionally defines org-level dashboards.",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/org"
+  },
+  "definitions": {
+    "org": {
+      "type": "object",
+      "required": ["id", "name", "products"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the org (kebab-case slug)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable display name."
+        },
+        "products": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of product IDs that belong to this org."
+        },
+        "config": {
+          "$ref": "#/definitions/orgConfig"
+        },
+        "dashboards": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/dashboard" },
+          "description": "Org-level dashboards (aggregated across all child products/teams)."
+        }
+      }
+    },
+    "orgConfig": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Org-level configuration. Currently unused but reserved for future settings."
+    },
+    "dashboard": {
+      "type": "object",
+      "required": ["id", "type", "title"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Dashboard identifier, unique within the parent entity."
+        },
+        "type": {
+          "type": "string",
+          "description": "Dashboard type key (e.g. baseorgmetrics, prcycletime, issuecycletime)."
+        },
+        "title": {
+          "type": "string",
+          "description": "Display title shown in the dashboard tab."
+        },
+        "description": {
+          "type": "string",
+          "description": "HTML-safe description shown below the dashboard title."
+        },
+        "chaturl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the AI chat assistant endpoint."
+        },
+        "aianalyticsurl": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "URL of the endpoint that returns AI analytics tooltips."
+        },
+        "diagrams": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/diagram" },
+          "description": "Ordered list of diagram widgets to render."
+        }
+      }
+    },
+    "diagram": {
+      "type": "object",
+      "required": ["endpoint"],
+      "additionalProperties": false,
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Display order (0-based)."
+        },
+        "type": {
+          "type": "string",
+          "description": "Diagram source type (typically 'json')."
+        },
+        "endpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the endpoint that returns the diagram data."
+        },
+        "span": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Grid column span (1 = half width, 2 = full width)."
+        },
+        "title": {
+          "type": "string",
+          "description": "Optional override title for this diagram widget."
+        },
+        "aianalytics": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to fetch and show AI analytics tooltip for this diagram."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description for this diagram widget (shown as tooltip or subtitle)."
+        },
+        "params": {
+          "type": "object",
+          "description": "Extra workflow request parameters for this diagram (e.g. {\"view\": \"criteria\"}). Merged into the request body; standard parameters are never overridden."
+        }
+      }
+    }
+  }
+}

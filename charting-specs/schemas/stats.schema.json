@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stats.schema.json",
+  "title": "Stats Visualization",
+  "description": "Key metric cards showing numeric values with optional goals.",
+  "type": "object",
+  "required": ["type", "label", "description", "lastupdate", "data"],
+  "properties": {
+    "type": { "const": "stats" },
+    "label": { "type": "string", "description": "Card title. May contain inline HTML." },
+    "description": { "type": "string", "description": "Tooltip text. HTML allowed." },
+    "lastupdate": { "type": "number", "description": "Unix timestamp in milliseconds." },
+    "helpUrl": { "type": "string", "format": "uri" },
+    "data": {
+      "type": "object",
+      "required": ["metrics"],
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "value"],
+            "properties": {
+              "label": { "type": "string", "description": "Display label." },
+              "value": {
+                "oneOf": [
+                  { "type": "number" },
+                  { "type": "string" }
+                ],
+                "description": "Metric value."
+              },
+              "goal": {
+                "oneOf": [
+                  { "type": "number" },
+                  { "const": "auto" }
+                ],
+                "description": "Target value. 'auto' derives from historical data."
+              },
+              "informational": { "type": "boolean", "description": "If true, no goal coloring applied." },
+              "explain": { "type": "string", "description": "Comparison HTML (e.g. vs prior period)." }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

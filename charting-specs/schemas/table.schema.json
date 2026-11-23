@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "table.schema.json",
+  "title": "Table Visualization",
+  "description": "Data table with sortable columns.",
+  "type": "object",
+  "required": ["type", "label", "description", "data"],
+  "properties": {
+    "type": { "const": "table" },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "lastupdate": { "type": "number" },
+    "helpUrl": { "type": "string", "format": "uri" },
+    "data": {
+      "type": "object",
+      "required": ["columns", "rows"],
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Column headers. Names starting with '_' are hidden."
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Row data keyed by column name. Values can be plain strings/numbers or objects with display (HTML) and sort (sort key).",
+            "additionalProperties": {
+              "oneOf": [
+                { "type": "string" },
+                { "type": "number" },
+                {
+                  "type": "object",
+                  "required": ["display", "sort"],
+                  "properties": {
+                    "display": { "type": "string", "description": "Rendered HTML." },
+                    "sort": {
+                      "oneOf": [
+                        { "type": "string" },
+                        { "type": "number" }
+                      ],
+                      "description": "Sort key."
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          }
+        },
+        "defaultSort": { "type": "string", "description": "Column name to sort by." },
+        "fullRepoNames": { "type": "boolean", "description": "Show full org/repo names." }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

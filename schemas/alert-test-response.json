@@ -1,0 +1,12 @@
+{
+  "atomicMetricsValue": 142,
+  "title": "PR Cycle Time",
+  "subtitle": "Key Metrics",
+  "type": "stats",
+  "data": {
+    "medianCycleTimeHours": 142,
+    "avgCycleTimeHours": 210,
+    "totalPRsMerged": 87,
+    "firstTimePassRate": 0.72
+  }
+}

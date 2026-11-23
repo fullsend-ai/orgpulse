@@ -1,0 +1,59 @@
+version: "2"
+linters:
+  enable:
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - durationcheck
+    - errchkjson
+    - errorlint
+    - exhaustive
+    - gocheckcompilerdirectives
+    - gochecksumtype
+    - gocyclo
+    - gosec
+    - gosmopolitan
+    - loggercheck
+    - makezero
+    - misspell
+    - musttag
+    - nilerr
+    - nilnesserr
+    - protogetter
+    - reassign
+    - recvcheck
+    - revive
+    - rowserrcheck
+    - spancheck
+    - sqlclosecheck
+    - testifylint
+    - unparam
+    - zerologlint
+    - copyloopvar
+  disable:
+    - contextcheck
+    - noctx
+  settings:
+    revive:
+      rules:
+        - name: dot-imports
+          disabled: true
+    staticcheck:
+      # see https://golangci-lint.run/usage/linters/#staticcheck
+      # we allow for dot-imports
+      checks: ["all", "-ST1000", "-ST1001", "-ST1003", "-ST1016", "-ST1020", "-ST1021", "-ST1022"]
+    unparam:
+      check-exported: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+formatters:
+  enable:
+    - gofmt
+  exclusions:
+    generated: lax

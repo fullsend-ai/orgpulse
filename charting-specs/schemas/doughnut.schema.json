@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "doughnut.schema.json",
+  "title": "Doughnut Visualization",
+  "description": "Pie/doughnut chart rendered via Chart.js.",
+  "type": "object",
+  "required": ["type", "label", "description", "lastupdate", "data"],
+  "properties": {
+    "type": { "const": "doughnut" },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "lastupdate": { "type": "number" },
+    "helpUrl": { "type": "string", "format": "uri" },
+    "data": {
+      "type": "object",
+      "required": ["labels", "datasets"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "datasets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["data", "backgroundColor"],
+            "properties": {
+              "data": { "type": "array", "items": { "type": "number" } },
+              "backgroundColor": { "type": "array", "items": { "type": "string" } },
+              "borderColor": { "type": "array", "items": { "type": "string" } },
+              "borderWidth": { "type": "number" },
+              "hoverOffset": { "type": "number" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "extra": { "$ref": "extra.schema.json" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "options": {
+      "type": "object",
+      "description": "Chart.js options override.",
+      "additionalProperties": true
+    },
+    "summary": {
+      "type": "object",
+      "description": "Extra metadata displayed outside the chart.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

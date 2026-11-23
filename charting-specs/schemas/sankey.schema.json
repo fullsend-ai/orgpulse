@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sankey.schema.json",
+  "title": "Sankey Visualization",
+  "description": "Sankey flow diagram rendered via chartjs-chart-sankey plugin.",
+  "type": "object",
+  "required": ["type", "label", "description", "lastupdate", "data"],
+  "properties": {
+    "type": { "const": "sankey" },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "lastupdate": { "type": "number" },
+    "helpUrl": { "type": "string", "format": "uri" },
+    "data": {
+      "type": "object",
+      "required": ["datasets"],
+      "properties": {
+        "datasets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "data", "color", "labels", "priority", "column"],
+            "properties": {
+              "label": { "type": "string" },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["from", "to", "flow"],
+                  "properties": {
+                    "from": { "type": "string", "description": "Source node key (lowercase)." },
+                    "to": { "type": "string", "description": "Target node key (lowercase)." },
+                    "flow": { "type": "number", "description": "Display value (percentage)." },
+                    "count": { "type": "integer", "description": "Raw count." }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "color": {
+                "type": "object",
+                "description": "Node key to hex color mapping.",
+                "additionalProperties": { "type": "string" }
+              },
+              "colorMode": { "type": "string", "enum": ["gradient", "from", "to"] },
+              "labels": {
+                "type": "object",
+                "description": "Node key to display name mapping.",
+                "additionalProperties": { "type": "string" }
+              },
+              "priority": {
+                "type": "object",
+                "description": "Node key to sort order (lower = higher).",
+                "additionalProperties": { "type": "integer" }
+              },
+              "column": {
+                "type": "object",
+                "description": "Node key to x-axis column index.",
+                "additionalProperties": { "type": "integer" }
+              },
+              "size": { "type": "string", "enum": ["max", "min"] },
+              "minFlow": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Minimum drawn flow size as a percentage of the total (default 2). Tooltips show real values. 0 disables."
+              },
+              "nodeWidth": { "type": "number" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "extra": { "$ref": "extra.schema.json" },
+        "medianReviewInterval": { "type": "number" },
+        "transfers": {
+          "type": "object",
+          "description": "Raw transfer counts keyed by 'FROM->TO'.",
+          "additionalProperties": { "type": "integer" }
+        },
+        "percentages": {
+          "type": "object",
+          "description": "Transfer percentages keyed by 'FROM->TO'.",
+          "additionalProperties": { "type": "number" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

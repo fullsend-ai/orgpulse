@@ -1,0 +1,257 @@
+{
+  "name": "lfm-workflow-editor",
+  "displayName": "LFM Workflow Editor",
+  "description": "Edit, test, and run LFM data-transformation workflows (JS + SQL) directly in VS Code.",
+  "version": "0.6.0",
+  "publisher": "lfm-dashboard",
+  "license": "Apache-2.0",
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fullsend-ai/orgpulse.git"
+  },
+  "homepage": "https://github.com/fullsend-ai/orgpulse",
+  "bugs": {
+    "url": "https://github.com/fullsend-ai/orgpulse/issues"
+  },
+  "keywords": [
+    "lfm",
+    "workflow",
+    "sql",
+    "data-pipeline",
+    "dashboard",
+    "devlake"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Data Science", "Other"],
+  "activationEvents": [
+    "onCommand:lfm.login",
+    "onCommand:lfm.logout",
+    "onCommand:lfm.openWorkflow",
+    "onCommand:lfm.createWorkflow",
+    "onCommand:lfm.runSql",
+    "onCommand:lfm.newSqlQuery",
+    "onCommand:lfm.browseDevLakeTables",
+    "workspaceContains:.lfm-workflow.json"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lfm.login",
+        "title": "LFM: Login"
+      },
+      {
+        "command": "lfm.logout",
+        "title": "LFM: Clear Stored API Key"
+      },
+      {
+        "command": "lfm.openWorkflow",
+        "title": "LFM: Open Workflow"
+      },
+      {
+        "command": "lfm.createWorkflow",
+        "title": "LFM: Create Workflow"
+      },
+      {
+        "command": "lfm.runWorkflow",
+        "title": "LFM: Run Workflow",
+        "icon": "$(play)"
+      },
+      {
+        "command": "lfm.runTests",
+        "title": "LFM: Run Tests",
+        "icon": "$(beaker)"
+      },
+      {
+        "command": "lfm.addTest",
+        "title": "LFM: Add Test",
+        "icon": "$(add)"
+      },
+      {
+        "command": "lfm.deleteTest",
+        "title": "LFM: Delete Test",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "lfm.publishWorkflow",
+        "title": "LFM: Publish to Staging",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "lfm.showHistory",
+        "title": "LFM: Version History",
+        "icon": "$(history)"
+      },
+      {
+        "command": "lfm.refreshDocs",
+        "title": "LFM: Refresh Reference Docs",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "lfm.publishFromScm",
+        "title": "LFM: Publish to Staging with Note",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "lfm.scm.refresh",
+        "title": "LFM: Refresh Staging Changes",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "lfm.scm.openChange",
+        "title": "Open Changes",
+        "icon": "$(git-compare)"
+      },
+      {
+        "command": "lfm.scm.openFile",
+        "title": "Open File",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "lfm.runSql",
+        "title": "LFM: Run SQL on DevLake",
+        "icon": "$(database)"
+      },
+      {
+        "command": "lfm.newSqlQuery",
+        "title": "LFM: New DevLake SQL Query"
+      },
+      {
+        "command": "lfm.browseDevLakeTables",
+        "title": "LFM: Browse DevLake Tables"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "lfm.login" },
+        { "command": "lfm.logout" },
+        { "command": "lfm.openWorkflow" },
+        { "command": "lfm.createWorkflow" },
+        { "command": "lfm.runWorkflow", "when": "lfm.workflowMode" },
+        { "command": "lfm.runTests", "when": "lfm.workflowMode" },
+        { "command": "lfm.addTest", "when": "lfm.workflowMode" },
+        { "command": "lfm.deleteTest", "when": "lfm.workflowMode" },
+        { "command": "lfm.publishWorkflow", "when": "lfm.workflowMode" },
+        { "command": "lfm.showHistory", "when": "lfm.workflowMode" },
+        { "command": "lfm.refreshDocs", "when": "lfm.workflowMode" },
+        { "command": "lfm.publishFromScm", "when": "false" },
+        { "command": "lfm.scm.refresh", "when": "lfm.workflowMode" },
+        { "command": "lfm.scm.openChange", "when": "false" },
+        { "command": "lfm.scm.openFile", "when": "false" },
+        { "command": "lfm.runSql" },
+        { "command": "lfm.newSqlQuery" },
+        { "command": "lfm.browseDevLakeTables" }
+      ],
+      "scm/title": [
+        {
+          "command": "lfm.publishFromScm",
+          "when": "scmProvider == lfm",
+          "group": "navigation@1"
+        },
+        {
+          "command": "lfm.scm.refresh",
+          "when": "scmProvider == lfm",
+          "group": "navigation@2"
+        }
+      ],
+      "scm/resourceState/context": [
+        {
+          "command": "lfm.scm.openFile",
+          "when": "scmProvider == lfm",
+          "group": "inline"
+        },
+        {
+          "command": "lfm.scm.openChange",
+          "when": "scmProvider == lfm",
+          "group": "navigation"
+        },
+        {
+          "command": "lfm.scm.openFile",
+          "when": "scmProvider == lfm",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "lfm.runWorkflow",
+          "when": "lfm.workflowMode",
+          "group": "navigation@1"
+        },
+        {
+          "command": "lfm.runTests",
+          "when": "lfm.workflowMode",
+          "group": "navigation@2"
+        },
+        {
+          "command": "lfm.publishWorkflow",
+          "when": "lfm.workflowMode",
+          "group": "navigation@3"
+        },
+        {
+          "command": "lfm.showHistory",
+          "when": "lfm.workflowMode",
+          "group": "navigation@4"
+        },
+        {
+          "command": "lfm.refreshDocs",
+          "when": "lfm.workflowMode",
+          "group": "navigation@5"
+        },
+        {
+          "command": "lfm.runSql",
+          "when": "editorLangId == sql",
+          "group": "navigation@6"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "lfm.runWorkflow",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r",
+        "when": "lfm.workflowMode"
+      },
+      {
+        "command": "lfm.runTests",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "lfm.workflowMode"
+      },
+      {
+        "command": "lfm.runSql",
+        "key": "ctrl+alt+d",
+        "mac": "ctrl+alt+d",
+        "when": "editorTextFocus && editorLangId == sql"
+      }
+    ],
+    "configuration": {
+      "title": "LFM Workflow Editor",
+      "properties": {
+        "lfm.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:9090",
+          "description": "Base URL of the LFM dashboard server."
+        },
+        "lfm.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Fallback API key for authenticating with the LFM dashboard. Prefer 'LFM: Login', which stores the key in VS Code's secure storage (SecretStorage); a key in secure storage takes precedence over this setting. Values here are stored in plaintext in settings.json and may be synced by Settings Sync."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.3.0"
+  }
+}

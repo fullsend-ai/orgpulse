@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bar.schema.json",
+  "title": "Bar Visualization",
+  "description": "Horizontal or vertical bar chart rendered via Chart.js.",
+  "type": "object",
+  "required": ["type", "label", "description", "lastupdate", "data"],
+  "properties": {
+    "type": { "const": "bar" },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "lastupdate": { "type": "number" },
+    "helpUrl": { "type": "string", "format": "uri" },
+    "data": {
+      "type": "object",
+      "required": ["labels", "datasets"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "datasets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "data"],
+            "properties": {
+              "label": { "type": "string" },
+              "data": { "type": "array", "items": { "type": "number" } },
+              "backgroundColor": {
+                "oneOf": [
+                  { "type": "string" },
+                  { "type": "array", "items": { "type": "string" } }
+                ]
+              },
+              "borderColor": {
+                "oneOf": [
+                  { "type": "string" },
+                  { "type": "array", "items": { "type": "string" } }
+                ]
+              },
+              "borderWidth": { "type": "number" },
+              "borderRadius": { "type": "number" },
+              "barThickness": { "type": "number" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "extra": { "$ref": "extra.schema.json" }
+      },
+      "additionalProperties": false
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

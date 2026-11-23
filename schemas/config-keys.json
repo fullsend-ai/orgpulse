@@ -1,0 +1,50 @@
+[
+  {
+    "key": "cycleTimeSlowHours",
+    "label": "Cycle Time Slow (hours)",
+    "description": "PR cycle time threshold in hours for 'slow' status",
+    "type": "number"
+  },
+  {
+    "key": "cycleTimeCriticalHours",
+    "label": "Cycle Time Critical (hours)",
+    "description": "PR cycle time threshold in hours for 'critical' status",
+    "type": "number"
+  },
+  {
+    "key": "analyticsprompt",
+    "label": "Analytics Prompt",
+    "description": "Custom prompt text for AI analytics requests",
+    "type": "string"
+  },
+  {
+    "key": "blueprintid",
+    "label": "Blueprint ID",
+    "description": "Comma-separated DevLake blueprint IDs for this team",
+    "type": "string"
+  },
+  {
+    "key": "rfe_jira_project",
+    "label": "AISDLC RFE Jira Project",
+    "description": "Jira project key(s) holding the team's RFEs, comma-separated. Set on the team; required by dashboards of type aisdlc, sent as rfe_jira_projects: [\"<key>\", ...].",
+    "type": "string"
+  },
+  {
+    "key": "strat_jira_project",
+    "label": "AISDLC Strategy Jira Project",
+    "description": "Jira project key(s) holding the team's strategies, comma-separated. Set on the team; required by dashboards of type aisdlc, sent as strat_jira_projects: [\"<key>\", ...].",
+    "type": "string"
+  },
+  {
+    "key": "rfe_station_id",
+    "label": "AISDLC RFE Station ID",
+    "description": "AISDLC station_id(s) of the RFE assessment station, comma-separated (e.g. rfe-creator). Set on the team; required by dashboards of type aisdlc, sent as rfe_station_ids: [\"<id>\", ...].",
+    "type": "string"
+  },
+  {
+    "key": "strategy_station_id",
+    "label": "AISDLC Strategy Station ID",
+    "description": "AISDLC station_id(s) of the strategy station, comma-separated (e.g. strategy-creator). Set on the team; required by dashboards of type aisdlc, sent as strategy_station_ids: [\"<id>\", ...].",
+    "type": "string"
+  }
+]

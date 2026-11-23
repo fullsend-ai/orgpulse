@@ -1,0 +1,36 @@
+{
+  "id": "demo-team",
+  "name": "Demo Team",
+  "contactemail": "lead@example.com",
+  "sources": [
+    {
+      "id": "gitrepos",
+      "type": "gitrepos",
+      "repos": [
+        {
+          "id": "demo-repo",
+          "type": "github",
+          "owner": "example-org",
+          "name": "demo-repo"
+        }
+      ]
+    },
+    {
+      "id": "workitems",
+      "type": "workitems",
+      "projects": [
+        {
+          "id": "0",
+          "type": "jira",
+          "jiraproject": "DEMO",
+          "boardid": "42",
+          "scope_config": {
+            "requirement_types": ["Story", "Task"],
+            "bug_types": ["Bug"],
+            "story_point_field": "customfield_10016"
+          }
+        }
+      ]
+    }
+  ]
+}

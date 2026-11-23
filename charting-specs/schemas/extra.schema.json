@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "extra.schema.json",
+  "title": "Extra Data",
+  "description": "Drill-down list structure for interactive data exploration in visualizations.",
+  "type": "object",
+  "required": ["config", "data"],
+  "properties": {
+    "config": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["location", "type"],
+        "properties": {
+          "location": {
+            "type": "string",
+            "enum": ["appendToAnalytics", "inDiagram"],
+            "description": "Where the drill-down trigger is rendered."
+          },
+          "type": {
+            "type": "string",
+            "enum": ["openList"],
+            "description": "Interaction type."
+          },
+          "field": {
+            "type": "string",
+            "description": "Key into extra.data. Required for appendToAnalytics."
+          },
+          "template": {
+            "type": "string",
+            "description": "Button label (appendToAnalytics) or popup title."
+          },
+          "labels": {
+            "type": "array",
+            "description": "Table column definitions. Used by appendToAnalytics.",
+            "items": {
+              "type": "object",
+              "required": ["label", "field"],
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "Column header text."
+                },
+                "field": {
+                  "type": "string",
+                  "description": "Key to read from each data item."
+                },
+                "link": {
+                  "type": "string",
+                  "description": "Optional key of an http(s) URL in each data item. The cell text links to it."
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "elements": {
+            "type": "object",
+            "description": "Diagram element to data mapping. Used by inDiagram. Keys identify diagram elements (e.g. 'opened->reviewed' for Sankey flows).",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["field", "template"],
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "description": "Key into extra.data."
+                },
+                "template": {
+                  "type": "string",
+                  "description": "Popup title."
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": { "properties": { "location": { "const": "appendToAnalytics" } } },
+            "then": { "required": ["field", "template", "labels"] }
+          },
+          {
+            "if": { "properties": { "location": { "const": "inDiagram" } } },
+            "then": { "required": ["elements"] }
+          }
+        ]
+      }
+    },
+    "data": {
+      "type": "object",
+      "description": "Maps field names to arrays of data items.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

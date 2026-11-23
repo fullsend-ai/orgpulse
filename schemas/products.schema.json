@@ -1,0 +1,197 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "products.schema.json",
+  "title": "Products Configuration",
+  "description": "Array of product definitions. Each product groups teams and optionally defines product-level dashboards and config overrides.",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/product"
+  },
+  "definitions": {
+    "product": {
+      "type": "object",
+      "required": ["id", "name", "teams"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the product (lowercase slug)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable display name."
+        },
+        "teams": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of team IDs that belong to this product."
+        },
+        "contactemail": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email for the product owner."
+        },
+        "config": {
+          "$ref": "#/definitions/productConfig"
+        },
+        "dashboards": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/dashboard" },
+          "description": "Product-level dashboards."
+        }
+      }
+    },
+    "productConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cycleTimeSlowHours": {
+          "type": "number",
+          "description": "Threshold in hours for marking a PR cycle time as slow."
+        },
+        "cycleTimeCriticalHours": {
+          "type": "number",
+          "description": "Threshold in hours for marking a PR cycle time as critical."
+        },
+        "analyticsprompt": {
+          "type": "string",
+          "description": "Custom prompt text appended to AI analytics requests."
+        },
+        "overrides": {
+          "$ref": "#/definitions/configOverrides"
+        }
+      }
+    },
+    "configOverrides": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sources": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "repos": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/overrideRepo" },
+              "description": "Product-level repo-to-team mapping that overrides the team-level source config."
+            }
+          }
+        }
+      }
+    },
+    "overrideRepo": {
+      "type": "object",
+      "required": ["id", "type", "owner", "name", "teams"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Repo identifier (typically matches the repo name)."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["github", "gitlab"],
+          "description": "Source control platform."
+        },
+        "owner": {
+          "type": "string",
+          "description": "GitHub org or GitLab group that owns the repo."
+        },
+        "name": {
+          "type": "string",
+          "description": "Repository name."
+        },
+        "teams": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Team IDs this repo is assigned to at the product level."
+        }
+      }
+    },
+    "dashboard": {
+      "type": "object",
+      "required": ["id", "type", "title"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Dashboard identifier, unique within the parent entity."
+        },
+        "type": {
+          "type": "string",
+          "description": "Dashboard type key (e.g. prcycletime, issuecycletime, aicommitscanner)."
+        },
+        "title": {
+          "type": "string",
+          "description": "Display title shown in the dashboard tab."
+        },
+        "description": {
+          "type": "string",
+          "description": "HTML-safe description shown below the dashboard title."
+        },
+        "jiraproject": {
+          "type": "string",
+          "description": "Jira project key (e.g. AAP) when the dashboard queries Jira data."
+        },
+        "chaturl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the AI chat assistant endpoint."
+        },
+        "aianalyticsurl": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "URL of the endpoint that returns AI analytics tooltips."
+        },
+        "diagrams": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/diagram" },
+          "description": "Ordered list of diagram widgets to render."
+        }
+      }
+    },
+    "diagram": {
+      "type": "object",
+      "required": ["endpoint"],
+      "additionalProperties": false,
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Display order (0-based)."
+        },
+        "type": {
+          "type": "string",
+          "description": "Diagram source type (typically 'json')."
+        },
+        "endpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the endpoint that returns the diagram data."
+        },
+        "span": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Grid column span (1 = half width, 2 = full width)."
+        },
+        "title": {
+          "type": "string",
+          "description": "Optional override title for this diagram widget."
+        },
+        "aianalytics": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to fetch and show AI analytics tooltip for this diagram."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description for this diagram widget (shown as tooltip or subtitle)."
+        },
+        "params": {
+          "type": "object",
+          "description": "Extra workflow request parameters for this diagram (e.g. {\"view\": \"criteria\"}). Merged into the request body; standard parameters are never overridden."
+        }
+      }
+    }
+  }
+}

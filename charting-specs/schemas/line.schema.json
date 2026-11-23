@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "line.schema.json",
+  "title": "Line Visualization",
+  "description": "Line chart / time series rendered via Chart.js.",
+  "type": "object",
+  "required": ["type", "label", "description", "lastupdate", "data"],
+  "properties": {
+    "type": { "const": "line" },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "lastupdate": { "type": "number" },
+    "helpUrl": { "type": "string", "format": "uri" },
+    "warning": { "type": "string", "description": "Warning banner text." },
+    "data": {
+      "type": "object",
+      "required": ["labels", "datasets"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "datasets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "data"],
+            "properties": {
+              "label": { "type": "string" },
+              "data": { "type": "array", "items": { "type": "number" } },
+              "showLine": { "type": "boolean" },
+              "pointRadius": { "type": "number" },
+              "pointHoverRadius": { "type": "number" },
+              "pointBackgroundColor": { "type": "string" },
+              "pointBorderColor": { "type": "string" },
+              "pointBorderWidth": { "type": "number" },
+              "backgroundColor": { "type": "string" },
+              "borderColor": { "type": "string" },
+              "borderWidth": { "type": "number" },
+              "borderDash": { "type": "array", "items": { "type": "number" } },
+              "fill": {
+                "oneOf": [
+                  { "type": "boolean" },
+                  { "type": "string" }
+                ]
+              },
+              "tension": { "type": "number" },
+              "order": { "type": "number" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

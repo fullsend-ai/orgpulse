@@ -1,0 +1,108 @@
+# Local development environment: MySQL + a mock chart-data server + the
+# dashboard, pre-seeded with sample org/product/team data. Start with `make dev`.
+#
+# The seeded diagrams point at mock-diagrams, which returns a canned chart
+# payload for every request.
+services:
+  mysql:
+    image: registry.redhat.io/rhel9/mysql-84:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dashboard
+      MYSQL_USER: metricsconfig
+      MYSQL_PASSWORD: changeme
+    ports:
+      # Published on 13306, not 3306, to avoid colliding with a locally
+      # running DevLake MySQL instance. Internal traffic (seed/dashboard ->
+      # mysql:3306) is unaffected — that goes over the compose network.
+      - "13306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mock-diagrams:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: devtools
+    command: ["/mock-diagrams"]
+    ports:
+      - "9999:9999"
+    environment:
+      PORT: "9999"
+
+  migrate:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: dashboard
+    # The dashboard stage's ENTRYPOINT is fixed to /orgpulse, so a
+    # plain `command:` override here (Compose's equivalent of Docker CMD)
+    # would only be appended as an argument to that entrypoint rather than
+    # replacing it, leaving the migrate service running the dashboard HTTP
+    # server forever instead of the migrate binary. `entrypoint:` replaces
+    # the entrypoint itself, actually invoking /migrate.
+    entrypoint: ["/migrate"]
+    environment:
+      DASHBOARD_DB_HOST: mysql
+      DASHBOARD_DB_PORT: "3306"
+      DASHBOARD_DB_USER: metricsconfig
+      DASHBOARD_DB_PASSWORD: changeme
+      DASHBOARD_DB_NAME: dashboard
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  seed:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: devtools
+    command: ["/seed-test-data"]
+    environment:
+      DASHBOARD_DB_HOST: mysql
+      DASHBOARD_DB_PORT: "3306"
+      DASHBOARD_DB_USER: metricsconfig
+      DASHBOARD_DB_PASSWORD: changeme
+      DASHBOARD_DB_NAME: dashboard
+      # Diagram endpoints are requested by the browser, so use the host-published
+      # URL rather than the compose-internal mock-diagrams hostname.
+      TEST_ELEMENT_URL: http://localhost:9999/metrics-data
+    depends_on:
+      mysql:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: dashboard
+    ports:
+      - "9090:9090"
+    environment:
+      DASHBOARD_DB_HOST: mysql
+      DASHBOARD_DB_PORT: "3306"
+      DASHBOARD_DB_USER: metricsconfig
+      DASHBOARD_DB_PASSWORD: changeme
+      DASHBOARD_DB_NAME: dashboard
+      AUTH_TEST_MODE: "${AUTH_TEST_MODE:-true}"
+      DEV_ADMIN_OVERRIDE: "${DEV_ADMIN_OVERRIDE:-true}"
+      WORKFLOW_EXEC_URL: http://localhost:7070
+      PORT: "9090"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/health/ready"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      mysql:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+      seed:
+        condition: service_completed_successfully

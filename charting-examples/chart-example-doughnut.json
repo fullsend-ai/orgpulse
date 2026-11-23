@@ -1,0 +1,217 @@
+  {
+    "type": "doughnut",
+    "label": "PR Productivity <a href=\"https://github.com/fullsend-ai/orgpulse/blob/main/docs/orgpulse-user-guide.md#pr-cycle-time\" target=\"_blank\" style=\"text-decoration: none; margin-left: 4px;\"><img src=\"help-icon.svg\" alt=\"Help\" style=\"vertical-align: middle; width: 16px; height: 16px;\" /></a>",
+    "description": "This metric assesses the efficiency of work by calculating the percentage of closed PRs that were ultimately merged versus those closed without merging. Only PRs that reached a final state (merged or closed) within the selected time period are included.",
+    "lastupdate": 1783469244746,
+    "data": {
+      "extra": {
+        "config": [
+          {
+            "location": "appendToAnalytics",
+            "type": "openList",
+            "field": "closed_without_merge",
+            "template": "Show Closed w/o Merge PRs",
+            "labels": [
+              {
+                "label": "PR ID",
+                "field": "id"
+              },
+              {
+                "label": "URL",
+                "field": "url"
+              }
+            ]
+          }
+        ],
+        "data": {
+          "closed_without_merge": [
+            {
+              "id": 10031,
+              "url": "https://github.com/tektoncd/pipeline/pull/10031"
+            },
+            {
+              "id": 10134,
+              "url": "https://github.com/tektoncd/pipeline/pull/10134"
+            },
+            {
+              "id": 10209,
+              "url": "https://github.com/tektoncd/pipeline/pull/10209"
+            },
+            {
+              "id": 10221,
+              "url": "https://github.com/tektoncd/pipeline/pull/10221"
+            },
+            {
+              "id": 10222,
+              "url": "https://github.com/tektoncd/pipeline/pull/10222"
+            },
+            {
+              "id": 10258,
+              "url": "https://github.com/tektoncd/pipeline/pull/10258"
+            },
+            {
+              "id": 10267,
+              "url": "https://github.com/tektoncd/pipeline/pull/10267"
+            },
+            {
+              "id": 10268,
+              "url": "https://github.com/tektoncd/pipeline/pull/10268"
+            },
+            {
+              "id": 10331,
+              "url": "https://github.com/tektoncd/pipeline/pull/10331"
+            },
+            {
+              "id": 10335,
+              "url": "https://github.com/tektoncd/pipeline/pull/10335"
+            },
+            {
+              "id": 10336,
+              "url": "https://github.com/tektoncd/pipeline/pull/10336"
+            },
+            {
+              "id": 1368,
+              "url": "https://github.com/tektoncd/catalog/pull/1368"
+            },
+            {
+              "id": 1371,
+              "url": "https://github.com/tektoncd/catalog/pull/1371"
+            },
+            {
+              "id": 1385,
+              "url": "https://github.com/tektoncd/catalog/pull/1385"
+            },
+            {
+              "id": 2028,
+              "url": "https://github.com/tektoncd/triggers/pull/2028"
+            },
+            {
+              "id": 3429,
+              "url": "https://github.com/tektoncd/operator/pull/3429"
+            },
+            {
+              "id": 3489,
+              "url": "https://github.com/tektoncd/operator/pull/3489"
+            },
+            {
+              "id": 3612,
+              "url": "https://github.com/tektoncd/operator/pull/3612"
+            },
+            {
+              "id": 2749,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2749"
+            },
+            {
+              "id": 2758,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2758"
+            },
+            {
+              "id": 2773,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2773"
+            },
+            {
+              "id": 2776,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2776"
+            },
+            {
+              "id": 2779,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2779"
+            },
+            {
+              "id": 2780,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2780"
+            },
+            {
+              "id": 2799,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2799"
+            },
+            {
+              "id": 2800,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2800"
+            },
+            {
+              "id": 2801,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2801"
+            },
+            {
+              "id": 2802,
+              "url": "https://github.com/tektoncd/pipelines-as-code/pull/2802"
+            },
+            {
+              "id": 1007,
+              "url": "https://github.com/openshift-pipelines/manual-approval-gate/pull/1007"
+            },
+            {
+              "id": 1094,
+              "url": "https://github.com/openshift-pipelines/console-plugin/pull/1094"
+            },
+            {
+              "id": 1125,
+              "url": "https://github.com/openshift-pipelines/console-plugin/pull/1125"
+            },
+            {
+              "id": 1129,
+              "url": "https://github.com/openshift-pipelines/console-plugin/pull/1129"
+            },
+            {
+              "id": 1130,
+              "url": "https://github.com/openshift-pipelines/console-plugin/pull/1130"
+            },
+            {
+              "id": 1149,
+              "url": "https://github.com/openshift-pipelines/console-plugin/pull/1149"
+            }
+          ]
+        }
+      },
+      "labels": [
+        "Merged",
+        "Closed w/o Merge"
+      ],
+      "datasets": [
+        {
+          "data": [
+            249,
+            34
+          ],
+          "backgroundColor": [
+            "#3E8635",
+            "#A30000"
+          ],
+          "borderColor": [
+            "#1E4F18",
+            "#7D1007"
+          ],
+          "borderWidth": 2,
+          "hoverOffset": 4
+        }
+      ]
+    },
+    "options": {
+      "responsive": true,
+      "maintainAspectRatio": false,
+      "cutout": "60%",
+      "plugins": {
+        "legend": {
+          "position": "bottom"
+        },
+        "tooltip": {
+          "callbacks": {}
+        },
+        "datalabels": {
+          "color": "#fff",
+          "font": {
+            "weight": "bold",
+            "size": 14
+          }
+        }
+      }
+    },
+    "summary": {
+      "merged": 249,
+      "closedWithoutMerge": 34,
+      "total": 283,
+      "mergedPercentage": 88,
+      "closedWithoutMergePercentage": 12
+    }
+  }

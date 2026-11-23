@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "response.schema.json",
+  "title": "Code Node Response",
+  "description": "Top-level response format returned by every diagram endpoint: a single-element array wrapping the visualization payload.",
+  "type": "array",
+  "minItems": 1,
+  "maxItems": 1,
+  "items": {
+    "type": "object",
+    "required": ["json"],
+    "properties": {
+      "json": {
+        "oneOf": [
+          { "$ref": "stats.schema.json" },
+          { "$ref": "doughnut.schema.json" },
+          { "$ref": "line.schema.json" },
+          { "$ref": "bar.schema.json" },
+          { "$ref": "scatter.schema.json" },
+          { "$ref": "table.schema.json" },
+          { "$ref": "sankey.schema.json" },
+          { "$ref": "knots.schema.json" },
+          { "$ref": "stagedoughnut.schema.json" }
+        ]
+      }
+    },
+    "additionalProperties": false
+  }
+}

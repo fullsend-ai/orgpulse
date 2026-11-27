@@ -1,6 +1,6 @@
 # Workflows
 
-<!-- fullsend /fs-code smoke test (issue #8) -->
+<!-- fullsend /fs-code and /fs-fix smoke test (issue #8): this comment was added by /fs-code and then updated by /fs-fix, so the fix flow was also tested -->
 
 Workflows are named data pipelines that expose HTTP endpoints. Each workflow follows a three-stage execution model:
 

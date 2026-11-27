@@ -1,5 +1,7 @@
 # e2e testing
 
+<!-- fullsend /fs-code smoke test -->
+
 ## Why "e2e" and not "integration"
 
 These tests start a real MySQL container using `podman` and are not included

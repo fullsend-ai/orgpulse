@@ -1,5 +1,7 @@
 # Workflows
 
+<!-- fullsend /fs-code smoke test (issue #8) -->
+
 Workflows are named data pipelines that expose HTTP endpoints. Each workflow follows a three-stage execution model:
 
 1. **Input Transform** — a JavaScript function that validates and reshapes incoming parameters.
